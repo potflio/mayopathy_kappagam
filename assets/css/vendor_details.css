@@ -1,0 +1,17 @@
+.table-icons {
+    font-size: 1.2rem;
+}
+
+.pagination .page-item {
+    margin: 0 2px;
+}
+
+.pagination .page-link {
+    cursor: pointer;
+}
+
+.pagination .active .page-link {
+    background-color: #007bff;
+    color: white;
+    font-weight: bold;
+}
