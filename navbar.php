@@ -4,26 +4,30 @@
     <script src="assets/js/script.js"></script>
     </head>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-
+       
         .sidebar {
-            width: 200px;
-            height: 100vh;
+            width: 180px;
+            height: calc(75vh - 80px);
+            /* Adjust height to account for the navbar */
+            margin-left: 10px;
+            margin-top: 180px;
+            /* Matches the height of the navbar */
             background-color: rgb(255, 255, 255);
             color: rgb(255, 255, 255);
             position: fixed;
             top: 0;
             left: 0;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            /* Border around the sidebar */
+            padding: 10px;
+            /* Padding inside the sidebar */
             display: flex;
             flex-direction: column;
-            padding: 10px 0;
             transition: transform 0.3s ease-in-out;
             z-index: 1000;
-            /* Ensure sidebar is above content */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            /* Add slight shadow for better aesthetics */
         }
 
         .sidebar a {
@@ -58,14 +62,12 @@
             font-size: 18px;
             cursor: pointer;
             z-index: 1100;
-            /* Ensure button is above sidebar */
         }
 
         .toggle-btn:focus {
             outline: none;
         }
 
-        /* By default, hide sidebar for smaller screens */
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
@@ -80,6 +82,7 @@
             }
         }
     </style>
+
 
     <body>
         <nav class="navbar navbar-light bg-light shadow-sm stick-top">
@@ -100,19 +103,20 @@
 
         <button class="toggle-btn" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
 
-        <div class="sidebar" id="sidebar">
-            <a href=""></a>
-            <a href="main_dashboard.php"><i class="bi bi-grid-fill text-success"></i> Dashboard</a>
-            <a href="consultation_details.php"><i class="bi bi-file-medical-fill text-info"></i> Consultation</a>
-            <a href="patient_details.php"><i class="bi bi-person-fill text-warning"></i> Patient</a>
-            <a href="vendor_details.php"><i class="bi bi-truck-front-fill text-secondary"></i> Vendor</a>
-            <a href="room_details.php"><i class="bi bi-building-fill text-danger"></i> Rooms</a>
-            <a href="staff_details.php"><i class="bi bi-people-fill text-primary"></i> Staff</a>
-            <a href="expense.php"><i class="bi bi-cash-coin text-success"></i> Expense</a>
-            <a href="fee.php"><i class="bi bi-receipt-cutoff text-info"></i> Fee</a>
-            <a href="reminder.php"><i class="bi bi-bell-fill text-warning"></i> Reminder</a>
-            <a href="daybook.php"><i class="bi bi-calendar-event-fill text-secondary"></i> DayBook</a>
-            <a href="balance_sheet.php"><i class="bi bi-graph-up text-danger"></i> Balance Sheet</a>
+        <div class="sidebar-container">
+            <div class="sidebar" id="sidebar">
+                <a href="main_dashboard.php"><i class="bi bi-grid-fill text-success"></i> Dashboard</a>
+                <a href="consultation_details.php"><i class="bi bi-file-medical-fill text-info"></i> Consultation</a>
+                <a href="patient_details.php"><i class="bi bi-person-fill text-warning"></i> Patient</a>
+                <a href="vendor_details.php"><i class="bi bi-truck-front-fill text-secondary"></i> Vendor</a>
+                <a href="room_details.php"><i class="bi bi-building-fill text-danger"></i> Rooms</a>
+                <a href="staff_details.php"><i class="bi bi-people-fill text-primary"></i> Staff</a>
+                <a href="expense.php"><i class="bi bi-cash-coin text-success"></i> Expense</a>
+                <a href="fee.php"><i class="bi bi-receipt-cutoff text-info"></i> Fee</a>
+                <a href="reminder.php"><i class="bi bi-bell-fill text-warning"></i> Reminder</a>
+                <a href="daybook.php"><i class="bi bi-calendar-event-fill text-secondary"></i> DayBook</a>
+                <a href="balance_sheet.php"><i class="bi bi-graph-up text-danger"></i> Balance Sheet</a>
+            </div>
         </div>
 
 
