@@ -9,6 +9,16 @@ function downloadExcel() {
     XLSX.writeFile(wb, "Data.xlsx");
 }
 
+function downloadPDF() {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    doc.autoTable({ html: '#myTable' });
+
+    doc.save('table.pdf');
+}
+
+
 let rowsPerPage = 10; // Number of rows to display per page
 
 function filterTable() {

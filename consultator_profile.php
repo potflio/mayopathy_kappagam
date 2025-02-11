@@ -1,4 +1,16 @@
 <!DOCTYPE html>
+<?php 
+require("class_hospital.php");
+$obj=new Hospital();
+$id=$_GET['id'];
+//if (isset($_GET['id'])) {
+    //$id = (int)$_GET['id'];  
+    //echo "ID Passed: " . $id;  
+//}else{
+   // die("ID not passed in URL");
+//}
+$consultant=$obj->single_display("SELECT * FROM consultant WHERE id=$id");
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -42,36 +54,35 @@
                 <div class="col-md-6 mb-4">
                     <div class="section-title">Personal Information</div>
                     <div class="profile-info">
-                        <p><strong>Consultation No:</strong> <span class="highlight">10245</span></p>
-                        <p><strong>Patient Name:</strong> Mr. Arjun Kumar</p>
-                        <p><strong>Father Name:</strong> Mr. Ramesh Kumar</p>
-                        <p><strong>Date of Birth:</strong> 15-Aug-1990</p>
-                        <p><strong>Age:</strong> 34</p>
-                        <p><strong>Communication Address:</strong> 25, Lakshmi Nagar, Chennai, Tamil Nadu, India</p>
-                        <p><strong>Mobile Number:</strong> +91-9876543210</p>
-                        <p><strong>Alternative Number:</strong> +91-8765432109</p>
-                        <p><strong>Email ID:</strong> arjunkumar90@example.com</p>
+                        <p><strong>Consultation No:</strong> <span class="highlight"><?php echo $consultant['Consultation_No'];?></span></p>
+                        <p><strong>Patient Name:</strong><?php echo $consultant['Patient_Name']; ?></p>
+						<p><strong>Father Name:</strong><?php echo $consultant['Father_Name']; ?></p>
+                        <p><strong>Date of Birth:</strong><?php echo $consultant['Patient_Date_of_Birth']; ?></p>
+                        <p><strong>Age:</strong><?php echo $consultant['Patient_Age']; ?></p>
+                        <p><strong>Communication Address:</strong><?php echo $consultant['Communication_Address']; ?></p>
+                        <p><strong>Mobile Number:</strong><?php echo $consultant['Mobile_Number']; ?></p>
+                        <p><strong>Alternative Number:</strong><?php echo $consultant['Alternative_Number']; ?></p>
+                        <p><strong>Email ID:</strong><?php echo $consultant['Email_ID']; ?></p>
                     </div>
                 </div>
                 <!-- Consultation Information -->
                 <div class="col-md-6 mb-4">
                     <div class="section-title">Consultation Information</div>
                     <div class="profile-info">
-                        <p><strong>Admission No:</strong> <span class="highlight">ADM20241245</span></p>
-                        <p><strong>Consultation Date:</strong> 20-Dec-2024</p>
-                        <p><strong>Reference:</strong> Dr. Kavita Mehta</p>
-                        <p><strong>Diagnosis:</strong> Early-stage Myopathy</p>
-                        <p><strong>Followup Date 1:</strong> 27-Dec-2024</p>
-                        <p><strong>Followup Date 2:</strong> 05-Jan-2025</p>
-                        <p><strong>Followup Date 3:</strong> 10-Jan-2025</p>
-                        <p><strong>Followup Date 4:</strong> 20-Jan-2025</p>
-                        <p><strong>Preferred Admission Date:</strong> 01-Feb-2025</p>
+                        <p><strong>Admission No:</strong> <span class="highlight"><?php echo $consultant['Admission_No']; ?></span></p>
+                        <p><strong>Consultation Date:</strong><?php echo $consultant['Consultation_Date']; ?></p>
+                        <p><strong>Reference:</strong><?php echo $consultant['Reference']; ?></p>
+                        <p><strong>Diagnosis:</strong><?php echo $consultant['Diagnosis']; ?></p>
+                        <p><strong>Followup Date 1:</strong><?php echo $consultant['Followup_Date_1']; ?></p>
+                        <p><strong>Followup Date 2:</strong><?php echo $consultant['Followup_Date_2']; ?></p>
+                        <p><strong>Followup Date 3:</strong><?php echo $consultant['Followup_Date_3']; ?></p>
+                        <p><strong>Followup Date 4:</strong><?php echo $consultant['Followup_Date_4']; ?></p>
+                        <p><strong>Preferred Admission Date:</strong><?php echo $consultant['Preferred_Admission_Date']; ?></p>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-
+	</div>
    
 </body>
 </html>

@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
+	<?php
+require('class_hospital.php');
+$obj = new Hospital();
+$consultant_payment = $obj->full_display("consultant_payment");
+$patient_payment = $obj->full_display("patient_payment");
+$expense = $obj->full_display("expense");
+$vendor_info = $obj->full_display("vendor_info");
+$room = $obj->full_display("room");	
+$sum_vendor =  $obj->single_display("select sum(Total_Amount)as sum_vendor from vendor_info");
+$sum_expense = $obj->single_display("select sum(Amount)as sum_expense from expense");
+$sum_vendor_info = $obj->single_display("select sum(Amount)as sum_vendor from vendor_info");	
+$sum_consultant_payment = $obj->single_display("select sum(Amount)as sum_consultant_payment from consultant_payment");		
+$sum_patient_payment =  $obj->single_display("select sum(Amount)as sum_patient_payment from patient_payment");
+$sum_room = $obj->single_display("select sum(Amount)as sum_room from sum_room");
+$total_paid = $sum_vendor_info['sum_vendor_info']+$sum_expense['sum_expense'];
+$total_received = $sum_consultant_payment['sum_consultant_payment']+$sum_patient_payment['sum_patient_payment']+$sum_room['sum_room'];
+	?>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +26,11 @@
 
 <body>
     <div class="container mt-5">
-        <!-- Header Section -->
+        <!-- Header Section 
         <div class="row">
             <div class="col-4">
-                <h6>MAYOPATHY
-                    <br> KAPPAGAM
-                </h6>
+               <h6>MAYOPATHY
+                    <br> KAPPAGAM</h6>
 
             </div>
             <div class="col-8 text-end">
@@ -27,163 +42,161 @@
                 </p>
                 <p><b>Date:</b> 12/08/2024</p>
             </div>
-        </div>
+        </div> -->
+
+   <center><form action="daybook_fetch.php" method="GET">
+    <label for="fromdate">From:</label>
+    <input type="date" id="dt_from" name="dt_from" required>
+    <label for="todate">To:</label>
+    <input type="date" id="dt_to" name="dt_to" required>
+    <button id="gobutton" type="submit">Go</button>
+</center>
 
         <!-- Title -->
         <h2 class="text-center text-primary my-4">DayBook</h2>
-        <div class="text-end mb-3">
-            <a href="consultation_form.php" class="btn btn-primary">+ ADD</a>
-        </div>
-        <div class="d-flex justify-content-between align-items-center mb-4">
-            <div class="col-4">
-                <input type="text" id="search" class="form-control" placeholder="Search by name..." oninput="filterTable()">
-            </div>
 
-            <button class="btn btn-success" onclick="downloadExcel()">Download Excel</button>
-        </div>
         <!-- Table Section -->
-        <table class="table table-bordered">
+        <table class="table table-bordered" id="myTable">
             <thead class="table-primary">
                 <tr>
-                    <th scope="col">S.no</th>
                     <th scope="col">Date</th>
-                    <th scope="col">Income</th>
-                    <th scope="col">Expense</th>
+                    <th scope="col">Particular</th>
+                    <th scope="col">Type</th>
+					<th scope="col">Paid</th>
+					<th scope="col">Received</th>
                 </tr>
             </thead>
-            <tbody id="myTable">
+            <tbody>
+				<?php 
+				foreach($consultant_payment as $consultant_payment){
+					?>
                 <tr>
-                    <td>1</td>
-                    <td>2025-01-01</td>
-                    <td>$100</td>
-                    <td>$50</td>
+                    <td scope="row"><?php echo date('d-m-Y',strtotime($consultant_payment['Date'])); ?></td>
+                    <td><?php echo$consultant_payment['Name']; ?></td>
+                    <td>Consultation</td>
+					<td>0</td>
+					<td><?php echo$consultant_payment['Amount']; ?></td>
                 </tr>
+             <?php } ?>
+				<?php 
+				foreach($patient_payment as $patient_payment){
+					?>
                 <tr>
-                    <td>2</td>
-                    <td>2025-01-02</td>
-                    <td>$200</td>
-                    <td>$70</td>
+                    <td scope="row"><?php echo date('d-m-Y',strtotime($patient_payment['Date'])); ?></td>
+                    <td><?php echo $patient_payment['Name']; ?></td>
+                    <td>Patient</td>
+					<td>0</td>
+					<td><?php echo $patient_payment['Amount']; ?></td>
+
                 </tr>
+             <?php } ?>
+				<?php 
+				foreach($expense as $expense){
+					?>
                 <tr>
-                    <td>3</td>
-                    <td>2025-01-03</td>
-                    <td>$150</td>
-                    <td>$60</td>
+                    <td scope="row"><?php echo date('d-m-Y',strtotime($expense['Date'])); ?></td>
+                    <td><?php echo $expense['Expense_Name']; ?></td>
+                    <td>Expenses</td>
+					<td><?php echo $expense['Amount']; ?></td>
+					<td>0</td>
                 </tr>
+             <?php } 
+				foreach($vendor_info as $vendor_info){
+					?>
                 <tr>
-                    <td>4</td>
-                    <td>2025-01-04</td>
-                    <td>$120</td>
-                    <td>$80</td>
+                    <td scope="row"><?php echo date('d-m-Y',strtotime($vendor_info['created_at'])); ?></td>
+                    <td><?php echo $vendor_info['Name']; ?></td>
+                    <td>Vendors</td>
+					<td><?php echo $vendor_info['Total_Amount']; ?></td>
+					<td>0</td>
                 </tr>
+             <?php } 
+				foreach($room as $room){
+					?>
                 <tr>
-                    <td>5</td>
-                    <td>2025-01-05</td>
-                    <td>$90</td>
-                    <td>$40</td>
+                    <td scope="row"><?php echo date('d-m-Y',strtotime($room['created_at'])); ?></td>
+                    <td><?php echo $room['Person_Name']; ?></td>
+                    <td>Rooms</td>
+					<td><?php echo $room['Amount']; ?></td>
+					<td>0</td>
                 </tr>
-                <tr>
-                    <td>6</td>
-                    <td>2025-01-06</td>
-                    <td>$130</td>
-                    <td>$50</td>
+             <?php } ?>				
+				<tr>
+					 <th scope="col"></th>
+                    <th scope="col"></th>
+                    <th scope="col">Total </th>
+					<th scope="col"><?php echo $total_paid; ?></th>
+					<th scope="col"><?php echo $total_received; ?></th>
                 </tr>
-                <tr>
-                    <td>7</td>
-                    <td>2025-01-07</td>
-                    <td>$110</td>
-                    <td>$60</td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>2025-01-08</td>
-                    <td>$140</td>
-                    <td>$70</td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>2025-01-09</td>
-                    <td>$170</td>
-                    <td>$90</td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>2025-01-10</td>
-                    <td>$160</td>
-                    <td>$80</td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>2025-01-11</td>
-                    <td>$180</td>
-                    <td>$100</td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>2025-01-12</td>
-                    <td>$190</td>
-                    <td>$110</td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td>2025-01-13</td>
-                    <td>$200</td>
-                    <td>$120</td>
-                </tr>
-                <tr>
-                    <td>14</td>
-                    <td>2025-01-14</td>
-                    <td>$210</td>
-                    <td>$130</td>
-                </tr>
-                <tr>
-                    <td>15</td>
-                    <td>2025-01-15</td>
-                    <td>$220</td>
-                    <td>$140</td>
-                </tr>
-                <tr>
-                    <td>16</td>
-                    <td>2025-01-16</td>
-                    <td>$230</td>
-                    <td>$150</td>
-                </tr>
-                <tr>
-                    <td>17</td>
-                    <td>2025-01-17</td>
-                    <td>$240</td>
-                    <td>$160</td>
-                </tr>
-                <tr>
-                    <td>18</td>
-                    <td>2025-01-18</td>
-                    <td>$250</td>
-                    <td>$170</td>
-                </tr>
-                <tr>
-                    <td>19</td>
-                    <td>2025-01-19</td>
-                    <td>$260</td>
-                    <td>$180</td>
-                </tr>
-                <tr>
-                    <td>20</td>
-                    <td>2025-01-20</td>
-                    <td>$270</td>
-                    <td>$190</td>
-                </tr>
-            </tbody>
+			</tbody>
         </table>
-        <div class="d-flex justify-content-center mt-3">
-            <nav aria-label="Page navigation example">
-                <ul id="pagination" class="pagination">
-                    <!-- Pagination will be dynamically generated -->
-                </ul>
-            </nav>
-        </div>
     </div>
-
-
 </body>
 
 </html>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function() {
+    $("button[type='submit']").on('click', function() {
+      //  var fromdate = $("#fromdate").val();
+        //var todate = $("#todate").val();
+		//  alert("From Date: " + fromdate + "\nTo Date: " + todate);
+       // sortTable();
+
+        //if (fromdate && todate) {
+           // $.ajax({
+               // url: "fetch_daybook.php",
+              //  type: "POST",
+               // data: {
+                  //  fromdate: fromdate,
+                   // todate: todate
+               // },
+                //success: function(response) {
+                  //  $('#myTable tbody').html(response);
+               // }
+           // });
+      //  } else {
+          //  alert("Please select both dates.");
+       // }
+    });
+});
+</script>
+
+<script>
+   
+	sortTable();
+	function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("myTable");
+  switching = true;
+  /* Make a loop that will continue until
+  no switching has been done: */
+  while (switching) {
+    // Start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /* Loop through all table rows (except the
+    first, which contains table headers): */
+    for (i = 1; i < (rows.length - 1); i++) {
+      // Start by saying there should be no switching:
+      shouldSwitch = false;
+      /* Get the two elements you want to compare,
+      one from current row and one from the next: */
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      // Check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        // If so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /* If a switch has been marked, make the switch
+      and mark that a switch has been done: */
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}			
+</script>
