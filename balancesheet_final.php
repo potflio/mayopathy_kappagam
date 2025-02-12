@@ -126,96 +126,97 @@
 
 <body>
     <?php include 'navbar.php'; ?>
+    <div class="main-content">
+        <div class="container mt-4">
+            <h2 class="text-center text-primary">Balance Sheet</h2>
+            <div class="table-container">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">Particular</th>
+                            <th scope="col">Amount</th>
+                            <th scope="col">Particular</th>
+                            <th scope="col">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Opening Balance</td>
+                            <td>0.00</td>
 
-    <div class="container mt-4">
-        <h2 class="text-center text-primary">Balance Sheet</h2>
-        <div class="table-container">
-            <table class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th scope="col">Particular</th>
-                        <th scope="col">Amount</th>
-                        <th scope="col">Particular</th>
-                        <th scope="col">Amount</th>
-                                            </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Opening Balance</td>
-                        <td>0.00</td>
-                       
-                        <td>Salary</td>
-                        <td>0.00</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>Inpatient Previous Month Balance</td>
-                        <td>0.00</td>
-                       
-                        <td>Machine Materials</td>
-                        <td>0.00</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>Outpatient Previous Month Balance</td>
-                        <td>0.00</td>
-                       
-                        <td>Vendor Payment</td>
-                        <td>0.00</td>
-                      
-                    </tr>
-                    <tr>
-                        <td>Inpatient Income</td>
-                        <td>0.00</td>
-                       
-                        <td>Office Expenses</td>
-                        <td>0.00</td>
-                       
-                    </tr>
-                    <tr>
-                        <td>Outpatient Income</td>
-                        <td>0.00</td>
-                        
-                        <td>Salary Advance</td>
-                        <td>0.00</td>
-                        
-                    </tr>
-                    <tr>
-                        <td>Machine Income</td>
-                        <td>0.00</td>
-                       
-                        <td>Other Branch Expenses</td>
-                        <td>0.00</td>
-                       
-                    </tr>
-                    <tr>
-                        <td>Fitting/Accessories of Machine</td>
-                        <td>0.00</td>
-                       
-                        <td>Admin Expenses</td>
-                        <td>0.00</td>
-                       
-                    </tr>
-                    <tr>
-                        <td>Consulting Fees</td>
-                        <td>0.00</td>
-                       
-                        <td>MD Expenses</td>
-                        <td>0.00</td>
-                       
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <th>Total Amount</th>
-                        <th>0.00</th>
-                        
-                        <th>Total Amount</th>
-                        <th>0.00</th>
-                        
-                    </tr>
-                </tfoot>
-            </table>
+                            <td>Salary</td>
+                            <td>0.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>Inpatient Previous Month Balance</td>
+                            <td>0.00</td>
+
+                            <td>Machine Materials</td>
+                            <td>0.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>Outpatient Previous Month Balance</td>
+                            <td>0.00</td>
+
+                            <td>Vendor Payment</td>
+                            <td>0.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>Inpatient Income</td>
+                            <td>0.00</td>
+
+                            <td>Office Expenses</td>
+                            <td>0.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>Outpatient Income</td>
+                            <td>0.00</td>
+
+                            <td>Salary Advance</td>
+                            <td>0.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>Machine Income</td>
+                            <td>0.00</td>
+
+                            <td>Other Branch Expenses</td>
+                            <td>0.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>Fitting/Accessories of Machine</td>
+                            <td>0.00</td>
+
+                            <td>Admin Expenses</td>
+                            <td>0.00</td>
+
+                        </tr>
+                        <tr>
+                            <td>Consulting Fees</td>
+                            <td>0.00</td>
+
+                            <td>MD Expenses</td>
+                            <td>0.00</td>
+
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Total Amount</th>
+                            <th>0.00</th>
+
+                            <th>Total Amount</th>
+                            <th>0.00</th>
+
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
         </div>
     </div>
 </body>

@@ -17,6 +17,7 @@ $total_receipt = $consultation_sum['consultation_sum'] + $monthly_payment_sum['m
 </head>
 <body>
     <?php include 'navbar.php'; ?>
+    <div class="main-content">
     <div class="container">
         <h2 class="text-center text-primary">Balance Sheet</h2>
         <table class="table table-bordered">
@@ -96,6 +97,7 @@ $total_receipt = $consultation_sum['consultation_sum'] + $monthly_payment_sum['m
                 </tr>
             </tbody>
         </table>
+    </div>
     </div>
 </body>
 </html>
